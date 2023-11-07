@@ -9,6 +9,7 @@ export const userRepositoryMongoDB = () => {
     const addUser = async (user: UserRegisterInterface) => {
         return await User.create(user);
     };
+
     return { getUserByEmail, addUser };
 };
 

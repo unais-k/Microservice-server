@@ -1,3 +1,5 @@
+import { Request } from "express";
+
 export interface JwtPayload {
     Id?: string | any;
     email?: string | any;

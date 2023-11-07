@@ -6,18 +6,22 @@ export const userAddressDBrepository = (repository: ReturnType<UserAddressReposi
         return await repository.getAddress(addressId);
     };
 
-    const createAddress = async (user: UserAddressDocument) => {
-        return await repository.createAddress(user);
+    const createAddress = async (user: UserAddressDocument, userId: string) => {
+        return await repository.createAddress(user, userId);
     };
 
     const getAllAddress = async (userId: string) => {
         return await repository.getAllAddress(userId);
+    };
+    const editAddress = async (address: UserAddressDocument) => {
+        return await repository.editAddress(address);
     };
 
     return {
         getAddress,
         createAddress,
         getAllAddress,
+        editAddress,
     };
 };
 
