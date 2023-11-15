@@ -10,9 +10,14 @@ export const userDbRepository = (repository: ReturnType<UserRepositoryMongoDB>) 
         return await repository.addUser(user);
     };
 
+    const userDetails = async (userId: string) => {
+        return await repository.userDetails(userId);
+    };
+
     return {
         getUserByEmail,
         addUser,
+        userDetails,
     };
 };
 

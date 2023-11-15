@@ -1,11 +1,10 @@
 import express, { Application, Request, Response, NextFunction } from "express";
 import http from "http";
-import serverConfig from "./framework/Server/server";
-import connectDB from "./framework/Database/server";
-import routes from "./framework/Server/Router/router";
-import expressConfig from "./framework/Server";
 import AppError from "./Utils/appError";
-import { createChannel } from "./Utils/Channel";
+import connectDB from "./../framework/Database/server";
+import expressConfig from "./../framework/server/index";
+import routes from "../framework/server/Router/router";
+import serverConfig from "../framework/server/server";
 const app: Application = express();
 const server = http.createServer(app);
 expressConfig(app);

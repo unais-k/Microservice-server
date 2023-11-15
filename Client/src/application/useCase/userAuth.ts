@@ -57,3 +57,8 @@ export const userLogin = async (
     };
     return { userData };
 };
+
+export const userDataFetchAPI = async (userId: string, userRepository: ReturnType<UserDBInterface>) => {
+    const response = await userRepository.userDetails(userId);
+    return response;
+};

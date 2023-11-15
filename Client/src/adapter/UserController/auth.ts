@@ -4,10 +4,8 @@ import { AuthService } from "../../framework/Server/Service/authService";
 import { UserRepositoryMongoDB } from "../../framework/repositer/userDBrepo";
 import { AuthServiceInterface } from "./../../application/Services/AuthInterfaces";
 import asyncHandler from "express-async-handler";
-import { userLogin, userRegister } from "./../../application/useCase/userAuth";
+import { userDataFetchAPI, userLogin, userRegister } from "./../../application/useCase/userAuth";
 import { UserRegisterInterface } from "../../types/common";
-import UserAddressDocument from "../../framework/interfaces/address";
-import { addressRegister } from "../../application/useCase/userAddress";
 
 const authController = (
     userDbRepository: UserDBInterface,
@@ -38,7 +36,17 @@ const authController = (
         });
     });
 
-    return { loginUser, registerUser };
+    const userDataFetch = asyncHandler(async (req: Request, res: Response) => {
+        const userId = req.body.user;
+        const response = await userDataFetchAPI(userId, dbRepositoryUser);
+        res.json({
+            status: "success",
+            message: "user data fetched",
+            response,
+        });
+    });
+
+    return { loginUser, registerUser, userDataFetch };
 };
 
 export default authController;

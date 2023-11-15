@@ -11,6 +11,7 @@ const AuthRoute = () => {
 
     router.post("/user-register-api", controller.registerUser);
     router.post("/user-login-api", controller.loginUser);
+    router.get("/user-data-fetch", controller.userDataFetch);
 
     return router;
 };

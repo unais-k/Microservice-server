@@ -33,7 +33,7 @@ export const userAddressRepoMongoDB = () => {
                 },
             }
         );
-        return { msg: "address edited" };
+        return { msg: "address edited", edit };
     };
     return { getAllAddress, createAddress, getAddress, editAddress };
 };
