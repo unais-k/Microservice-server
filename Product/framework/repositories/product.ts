@@ -13,9 +13,13 @@ export const productRepositoryMongoDB = () => {
         return await Product.findOne({ _id: id });
     };
 
+    const getAllProduct = async () => {
+        return await Product.find();
+    };
+
     const addToCart = async (product: string) => {
         console.log(product);
     };
-    return { addProduct, findProduct, addToCart };
+    return { addProduct, findProduct, addToCart, getAllProduct };
 };
 export type ProductRepositoryMongoDB = typeof productRepositoryMongoDB;

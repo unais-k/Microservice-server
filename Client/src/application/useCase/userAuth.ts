@@ -62,3 +62,5 @@ export const userDataFetchAPI = async (userId: string, userRepository: ReturnTyp
     const response = await userRepository.userDetails(userId);
     return response;
 };
+
+export const SubscribeEventsController = async (userId: string, payload: any) => {};

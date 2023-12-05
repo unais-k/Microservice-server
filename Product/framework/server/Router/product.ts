@@ -9,6 +9,8 @@ const ProductRoute = () => {
     const controller = ProductController(productDBRepository, productRepositoryMongoDB);
 
     router.post("/add-product-api", controller.addProductController);
+    router.post("/file-upload");
+    router.get("/get-all-products", controller.GetAllProductController);
     router.get("/get-product-by-category", controller.ProductFindController);
 
     return router;

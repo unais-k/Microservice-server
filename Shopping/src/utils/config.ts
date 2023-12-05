@@ -18,9 +18,6 @@ const configENV = {
     MSG_QUEUE_URL: process.env.MSG_QUEUE_URL as string,
     CUSTOMER_SERVICE: "customer_service",
     SHOPPING_SERVICE: "shopping_service",
-    CLOUD_NAME: process.env.CLOUD_NAME as string,
-    API_KEY: process.env.API_KEY as string,
-    API_SECRET: process.env.API_SECRET as string,
 };
 
 export default configENV;

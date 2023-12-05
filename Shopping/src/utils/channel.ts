@@ -1,6 +1,6 @@
 import * as amqp from "amqplib";
 import configENV from "./config";
-import logging from "./logging";
+import logging from "./loggings";
 
 export async function createChannel(): Promise<amqp.Channel> {
     try {

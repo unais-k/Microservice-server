@@ -9,6 +9,7 @@ const userRoute = () => {
     const controller = userController(userDbRepository, userRepositoryMongoDB);
 
     router.get("/user-data-fetch", clientVerifyToken, controller.userDataFetch);
+    router.get("/user-cart-add/:id", controller.SubscribeEvents);
 
     return router;
 };

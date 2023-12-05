@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { UserDBInterface } from "../../application/repositers/userDBrepo";
 import { UserRepositoryMongoDB } from "../../framework/repositer/userDBrepo";
 import asyncHandler from "express-async-handler";
-import { userDataFetchAPI } from "./../../application/useCase/userAuth";
+import { SubscribeEventsController, userDataFetchAPI } from "./../../application/useCase/userAuth";
 
 const userController = (userDbRepository: UserDBInterface, userDbRepositoryImpl: UserRepositoryMongoDB) => {
     const dbRepositoryUser = userDbRepository(userDbRepositoryImpl());
@@ -18,7 +18,14 @@ const userController = (userDbRepository: UserDBInterface, userDbRepositoryImpl:
         });
     });
 
-    return { userDataFetch };
+    const SubscribeEvents = asyncHandler(async (req: Request, res: Response) => {
+        const userId = req.body.user.payload.Id;
+        const payload = req.body;
+
+        const response = await SubscribeEventsController(userId, payload);
+    });
+
+    return { userDataFetch, SubscribeEvents };
 };
 
 export default userController;

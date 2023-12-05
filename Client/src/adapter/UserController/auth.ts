@@ -6,6 +6,7 @@ import { AuthServiceInterface } from "./../../application/Services/AuthInterface
 import asyncHandler from "express-async-handler";
 import { userDataFetchAPI, userLogin, userRegister } from "./../../application/useCase/userAuth";
 import { UserRegisterInterface } from "../../types/common";
+import logging from "../../Utils/logging";
 
 const authController = (
     userDbRepository: UserDBInterface,
@@ -18,6 +19,7 @@ const authController = (
 
     const loginUser = asyncHandler(async (req: Request, res: Response) => {
         const { email, password }: { email: string; password: string } = req.body;
+        logging.info(req.body);
         const { userData } = await userLogin(email, password, dbRepositoryUser, authService);
         res.json({
             status: "success",

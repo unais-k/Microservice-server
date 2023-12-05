@@ -11,6 +11,11 @@ export const FindProduct = async (productId: string, productRepo: ReturnType<Pro
     return response;
 };
 
+export const GetAllProduct = async (productRepo: ReturnType<ProductDBInterface>) => {
+    const response = await productRepo.getAllProduct();
+    return response;
+};
+
 export const AddToCart = async (productId: string, productRepo: ReturnType<ProductDBInterface>) => {
     const response = await productRepo.addToCart(productId);
     return response;
