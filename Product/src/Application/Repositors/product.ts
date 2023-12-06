@@ -18,6 +18,8 @@ export const productDBRepository = (repository: ReturnType<ProductRepositoryMong
         return await repository.addToCart(product);
     };
 
+    const addToWishlist = async (product: string) => {};
+
     return { addProduct, findProduct, addToCart, getAllProduct };
 };
 

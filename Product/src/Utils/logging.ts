@@ -1,4 +1,4 @@
-const DEFAULT_NAMESPACE = "product server";
+const DEFAULT_NAMESPACE = "product";
 
 const info = (message: any, namespace?: string) => {
     if (typeof message === "string") {

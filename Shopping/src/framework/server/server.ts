@@ -1,6 +1,6 @@
 import { Server } from "http";
-import configENV from "../../Utils/config";
-import logging from "../../Utils/loggings";
+import configENV from "../../utils/config";
+import logging from "../../utils/loggings";
 
 const serverConfig = (server: Server) => {
     server.listen(configENV.PORT, () => {

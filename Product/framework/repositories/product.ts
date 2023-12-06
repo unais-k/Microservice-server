@@ -18,8 +18,16 @@ export const productRepositoryMongoDB = () => {
     };
 
     const addToCart = async (product: string) => {
+        // find the product and send it to both client and shopping with appropriate message to do actions
         console.log(product);
     };
-    return { addProduct, findProduct, addToCart, getAllProduct };
+
+    const addToWishlist = async (product: string) => {
+        const id = findProduct(product);
+
+        //  channel to client the object and add a message to add to wishlist
+        return await Product.findOne({ _id: id });
+    };
+    return { addProduct, findProduct, addToCart, getAllProduct, addToWishlist };
 };
 export type ProductRepositoryMongoDB = typeof productRepositoryMongoDB;
