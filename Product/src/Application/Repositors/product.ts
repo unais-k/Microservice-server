@@ -1,4 +1,4 @@
-import { ProductRepositoryMongoDB } from "../../../framework/repositories/product";
+import { ProductRepositoryMongoDB } from "../../framework/repositories/product";
 import { ProductInterface } from "../../types/common";
 
 export const productDBRepository = (repository: ReturnType<ProductRepositoryMongoDB>) => {

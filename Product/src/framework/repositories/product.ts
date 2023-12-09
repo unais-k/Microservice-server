@@ -1,5 +1,5 @@
+import { ProductInterface } from "../../types/common";
 import Product from "./../Model/product";
-import { ProductInterface } from "./../../src/types/common";
 import mongoose from "mongoose";
 
 export const productRepositoryMongoDB = () => {

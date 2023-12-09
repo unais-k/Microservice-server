@@ -4,9 +4,9 @@ import { ProductDBInterface } from "../Repositors/product";
 export const GetProductPayload = async (
     userId: string,
     productId: string,
-    qty: string,
     productRepo: ReturnType<ProductDBInterface>,
-    event: string
+    event: string,
+    qty?: string
 ) => {
     const response = await productRepo.findProduct(productId);
     const payload = {

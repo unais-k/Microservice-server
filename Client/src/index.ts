@@ -10,6 +10,7 @@ const app: Application = express();
 const server = http.createServer(app);
 expressConfig(app);
 routes(app);
+createChannel();
 
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
     if (err instanceof AppError) {

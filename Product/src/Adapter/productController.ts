@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-import { ProductRepositoryMongoDB } from "../../framework/repositories/product";
 import { ProductDBInterface } from "../Application/Repositors/product";
 import asyncHandler from "express-async-handler";
 import { ProductInterface } from "./../types/common";
@@ -8,12 +7,9 @@ import logging from "../Utils/logging";
 import { publishMessage } from "../Utils/Channel";
 import configENV from "./../Utils/config";
 import * as amqp from "amqplib";
+import { ProductRepositoryMongoDB } from "../framework/repositories/product";
 
-const ProductController = (
-    productDBRepository: ProductDBInterface,
-    productDbRepositoryImpl: ProductRepositoryMongoDB,
-    channel: amqp.Channel
-) => {
+const ProductController = (productDBRepository: ProductDBInterface, productDbRepositoryImpl: ProductRepositoryMongoDB) => {
     const ProductRepo = productDBRepository(productDbRepositoryImpl());
 
     const addProductController = asyncHandler(async (req: Request, res: Response) => {
@@ -50,17 +46,17 @@ const ProductController = (
     const AddToCartController = asyncHandler(async (req: Request, res: Response) => {
         const userId = req.body.user;
         const { productId, qty } = req.body;
-        const response = GetProductPayload(userId, productId, qty, ProductRepo, "ADD_TO_CART");
+        const response = GetProductPayload(userId, productId, ProductRepo, "ADD_TO_CART", qty);
         // send to both client and shopping
         res.json({ status: "success", message: "found product", response });
     });
 
     const AddToWishlistController = asyncHandler(async (req: Request, res: Response) => {
-        const userId = req.body.user;
-        const { productId, qty } = req.body;
+        const userId = req.body.user.payload.Id;
+        const { productId } = req.body;
 
-        const response = GetProductPayload(userId, productId, qty, ProductRepo, "ADD_TO_WISHLIST");
-        publishMessage({ channel: channel, service: configENV.CUSTOMER_SERVICE, msg: JSON.stringify(response) });
+        const response = await GetProductPayload(userId, productId, ProductRepo, "ADD_TO_WISHLIST");
+        publishMessage({ service: configENV.CUSTOMER_SERVICE, msg: JSON.stringify(response) });
 
         // send response to client side with channel
         res.json({ status: "success", message: "Added to wishlist", response });
